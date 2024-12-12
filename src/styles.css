@@ -45,15 +45,3 @@
   #root, #__next {
     isolation: isolate;
   }
-
-
-
-body { 
-    background-color: black;
-    color: white;
-}
-
-button {
-    background-color: black;
-    color: white;
-}
