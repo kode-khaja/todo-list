@@ -5,22 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <header>
-        <h1>APPistant</h1>
-        <p>A Personal Task Manager to Ease Your Day!</p>
-        <nav>
-            <div id="task-links">
-                <button id="add-tasks">Add Tasks</button>
-                <button id="your-projects">All Projects</button>
-            </div>
-        </nav>
-    </header>
-    <div class="content" id="content">
-         <!-- <text>Finest Representation Of The Best Cuisine...</text>
-         <img src="https://media.istockphoto.com/id/1428412216/photo/a-male-chef-pouring-sauce-on-meal.jpg?s=612x612&w=0&k=20&c=8U3mrgWsuB7pB8axtGj89MXRkHDKodEli9F6wKgPT4A=" alt="">
-         <h1>Vesuvio's</h1> -->
-    </div>
+<button class="title">+task-master</button>
 
+<div class="all-tasks">
+   <h2 class="task-list-title">Projects</h2>
+   <ul class="task-list" data-lists>
+       <li class="list-name active-list">Default</li>
+       <!-- <li class="list-name">Work</li>
+       <li class="list-name">Home</li> -->
+   </ul>
+  <form action="" id="list-create" data-new-list-form>
+   <input type="text" class="new list" placeholder="new project name" aria-label="new list name"  data-new-list-input/>
+   <button class="btn create" aria-label="create new list">+</button>
+  </form>
+</div>
+
+
+<div class="todo-list" data-list-display-container>
+   <div class="todo-header">
+       <h2 class="list-title" data-list-title>Default</h2>
+       <button class="add-task" data-add-task-button>+add task</button>
+       <button class="btn-delete" data-delete-list-button>-delete project</button>
+   </div>
+
+   <div class="todo-body">
+       <div class="tasks" data-tasks>
+        <div class="task">
+            <!-- <input type="checkbox" id="task-1" />
+            <label for="task-1"> 
+                <span class="custom-checkbox"></span>
+                Review the business plan
+            </label> -->
+        </div>
+
+        </div>
+           
+       </div>
+
+       <div class="new-task-creator">
+            <dialog class="task-dialog">
+                <form method="dialog" id="new-task-form" data-new-task-form>
+                    <label for="task-title">Task Title</label>
+                    <input type="text" id="task-title" required>
+                    <label for="task-desc">Task Description</label>
+                    <textarea name="description" id="task-desc" form="new-task-form" placeholder="Describe task here..."></textarea>
+                    <label for="task-due">Due Date</label>
+                    <input type="date" id="task-due" required>
+                    <!-- add priority radio btns  -->
+                    <label for="task-priority">Task Priority -</label>
+                           <select id="task-priority" name="projects" size="3">
+                               <option value="Low" selected>Low</option>
+                               <option value="Medium">Medium</option>
+                               <option value="High">High</option>
+                           </select>
+                                  <button type="submit" class="add-this-task">+add task</button>
+               <button class="cancel-this-task">-cancel</button>
+
+              </form>
+              </dialog>
+       </div>
+
+       <div class="delete-stuff">
+           <button class="btn-clear" data-clear-completed-tasks-button>-clear completed tasks</button>
+
+       </div>
+   </div>
+</div>
+<ul id="myList">
+   <!-- JS  -->
+</ul>
+
+<template id="task-template">
+   <div class="task">
+       <input type="checkbox"/>
+       <label> 
+           <span class="custom-checkbox"></span>
+       </label>
+   </div>
+</template>
 </body>
 </html>

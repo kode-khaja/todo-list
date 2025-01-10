@@ -1,26 +1,35 @@
-export let pageLoadElements = window.addEventListener('load', (event) => {
-   const homeElements = document.querySelector('#content');
-   const homeText = document.createElement('h2');
-   homeText.innerHTML = `Upcoming Tasks`;
-
-   document.body.appendChild(homeElements);
-   homeElements.appendChild(homeText)
-   
-})
-console.log("pageLoadElements initialized:", pageLoadElements);
+import { State } from "./all-projects"
 
 
-export function home() {
-    document.querySelector('#content').innerHTML = '';
-    const homeElements = document.querySelector('#content');
-    const descText = document.createTextNode('Finest Representation of the Most Delectable Cuisine...')
-    const imgHome = document.createElement('img');
-    imgHome.src = "https://media.istockphoto.com/id/1428412216/photo/a-male-chef-pouring-sauce-on-meal.jpg?s=612x612&w=0&k=20&c=8U3mrgWsuB7pB8axtGj89MXRkHDKodEli9F6wKgPT4A=";
-    const restaurantName = document.createElement('h1');
-    restaurantName.innerHTML = `Papa Vesuvio's`;
- 
-    document.body.appendChild(homeElements);
-    homeElements.appendChild(descText)
-    homeElements.appendChild(imgHome)
-    homeElements.appendChild(restaurantName)
- }
+export class Task {
+      constructor (title, description, dueDate, priority) {
+            this.id = Date.now().toString(),
+            this.title = title,
+            this.description = description,
+            this.dueDate = dueDate,
+            this.priority = priority,
+            this.complete = false
+         }
+
+
+         //  log() {
+         //       return (`Task Title: ${this.title}   Task Description: ${this.description}   Task Due: ${this.dueDate}   
+         //       Task Priority: ${this.priority}`)
+                            
+         //        }
+
+           addTasksToList (lists, selectedListId) {
+                   const selectedList = lists.find(list => list.id === selectedListId)
+                   console.log("Selected List Before Adding Task:", selectedList);
+
+                   if (selectedList) {
+                      selectedList.tasks.push(this)
+                      console.log("Selected List After Adding Task:", selectedList);
+                      return lists
+                   } else {
+                      throw new Error('Error! No selected list found!');
+                      
+                   }
+                   }
+      }
+      

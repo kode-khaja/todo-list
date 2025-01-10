@@ -1,14 +1,39 @@
-export function aboutUs() {
-    document.querySelector('#content').innerHTML = '';
-    const aboutUs = document.createElement('div');
-    aboutUs.innerHTML = `Welcome to Papa Vesuvio’s, where tradition meets taste in the heart of Bensonhurst, New York. Inspired by the rich culinary heritage of Naples, we bring authentic Italian flavors to your plate, crafted with love and passed down through generations.
+import { Task } from "./pageload-tasks"
 
-At Papa Vesuvio’s, we believe that every meal is a celebration of family, community, and passion. From our classic hand-tossed pizzas baked to perfection in our stone oven to hearty pastas and fresh, locally sourced ingredients, we aim to deliver an unforgettable dining experience.
+export const State = {
+    lists: [],
+    selectedListId: null,
 
-Whether you’re stopping by for a quick slice, a cozy family dinner, or a special celebration, Papa Vesuvio’s is your home for warm hospitality, delicious food, and the true spirit of Italian dining.
+    getLists() {
+        return this.lists;
+    },
 
-Join us at Papa Vesuvio’s, where every dish tells a story, and every visit feels like coming home. Buon appetito!`
+    getSelectedListId() {
+        return this.selectedListId;
+    },
 
-document.querySelector('#content').appendChild(aboutUs)
+    setLists(newLists) {
+        this.lists = newLists;
+        this.save();
+    },
 
-}
+    setSelectedListId(id) {
+        this.selectedListId = id;
+        this.save();
+    },
+
+    save() {
+        localStorage.setItem('lists', JSON.stringify(this.lists));
+        localStorage.setItem('selectedListId', this.selectedListId);
+    },
+
+    load() {
+        const savedLists = localStorage.getItem('lists');
+        const savedSelectedListId = localStorage.getItem('selectedListId');
+
+        this.lists = savedLists ? JSON.parse(savedLists) : [];
+        this.selectedListId = savedSelectedListId || null;
+    }
+};
+
+State.load()

@@ -1,7 +1,6 @@
 // webpack.config.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { Stats } = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -11,16 +10,19 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist"), // Make sure this folder exists
     clean: true,
   },
   devtool: "eval-source-map",
   devServer: {
-    watchFiles: ["./src/template.html"],
+    watchFiles: ["./src/**/*"], // Watch all files in 'src'
+    static: {
+      directory: path.join(__dirname, "dist"), // Serve content from 'dist' folder
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/template.html",
+      template: "./src/template.html", // Make sure this exists in 'src'
     }),
   ],
   module: {
